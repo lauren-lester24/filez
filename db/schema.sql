@@ -21,3 +21,4 @@ folder_id INTEGER NOT NULL REFERENCES folders(id) ON DELETE CASCADE,
 UNIQUE (name, folder_id)
 
 );
+-- TODO

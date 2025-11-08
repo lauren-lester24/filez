@@ -6,6 +6,7 @@ await db.end();
 console.log("🌱 Database seeded.");
 
 async function seed() {
+<<<<<<< HEAD
  try {
   await db.query("DELETE FROM files");
   await db.query("DELETE FROM folders");
@@ -32,4 +33,7 @@ const folderId = rows[0].id;
  } catch (error) {
       console.error("Error seeding database:", error);
  }
+=======
+  // TODO
+>>>>>>> 99272a07fd467af1f009bd4199987d98ff8accb9
 }

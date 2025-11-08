@@ -1,4 +1,5 @@
 import express from "express";
+<<<<<<< HEAD
 // import { getFolders } from "./db/queries/folders.js";
 
 const app = express();
@@ -76,4 +77,7 @@ try {
 
 
 
+=======
+const app = express();
+>>>>>>> 99272a07fd467af1f009bd4199987d98ff8accb9
 export default app;
