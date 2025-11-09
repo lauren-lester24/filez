@@ -1,6 +1,6 @@
 import express from "express";
-<<<<<<< HEAD
-// import { getFolders } from "./db/queries/folders.js";
+import { getFiles, createFile } from "#db/quieres/files";
+import { getFolders, getFolderById, getFolderByIdWithFiles } from "#db/quieres/folders";
 
 const app = express();
 
@@ -36,11 +36,11 @@ try {
 
 
 
-// GET /folders/:id
+// GET /folders/:id with files
 app.get("/folders/:id", async (req, res) => {
     try {
         const { id } = req.params;
-        const folder = await getFolderById(id);
+        const folder = await getFolderByIdWithFiles(id);
         if(!folder) return res.status(404).json({ error: "Folder not found"});
         res.json(folder);
     } catch (error) {
@@ -50,16 +50,16 @@ app.get("/folders/:id", async (req, res) => {
 
 
 
-// POST /folder/:id/files
+// POST /folders/:id/files
 
 app.post("/folders/:id/files", async (req, res) => {
 try {
     const { id } = req.params;
-    const folderExists = await getFolderExists(id);
-    if (!folderExists) return res.status(404).json({ error: "Folder not found"});
+    const folder = await getFolderById(id);
+    if (!folder) return res.status(404).json({ error: "Folder not found"});
 
         const{ name, size } = req.body || {};
-        if(!req.body) return res.status(400).json({ error: "Missing required fields: name and size"});
+        if(!name || !size) return res.status(400).json({ error: "Missing required fields: name and size"});
 
         const newFile = await createFile(id, { name, size });
         res.status(201).json(newFile);
@@ -77,7 +77,4 @@ try {
 
 
 
-=======
-const app = express();
->>>>>>> 99272a07fd467af1f009bd4199987d98ff8accb9
 export default app;
